@@ -111,6 +111,70 @@
             filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
         }
 
+        /* Hero Screenshot */
+        .hero-screenshot {
+            position: relative;
+        }
+
+        .hero-screenshot img {
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+            border: 1px solid rgba(140, 95, 50, 0.4);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(232, 184, 80, 0.1);
+        }
+
+        /* GALLERY */
+        .gallery {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            color: #e8b850;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 24px;
+        }
+
+        .gallery-item {
+            margin: 0;
+            background: rgba(40, 22, 12, 0.4);
+            border: 1px solid rgba(140, 95, 50, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(232, 184, 80, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item figcaption {
+            text-align: center;
+            color: #b89866;
+            font-size: 0.95em;
+            font-style: italic;
+            margin-top: 14px;
+        }
+
         /* FEATURES */
         .features {
             display: grid;
@@ -221,6 +285,12 @@
             .bean-display {
                 font-size: 10em;
             }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 1.6em;
+            }
         }
     </style>
 </head>
@@ -246,7 +316,32 @@
                     spür die Vibration — wie früher, nur eben digital.
                 </p>
             </div>
-            <div class="bean-display">☕</div>
+            <div class="hero-screenshot">
+                <img src="screenshots/01_holzkiste_geschlossen.jpg" alt="0xC0FFEE++ Holzkiste mit Kaffeebohne" loading="eager">
+            </div>
+        </section>
+
+        <!-- Screenshots Galerie -->
+        <section class="gallery">
+            <h2 class="section-title">So sieht's aus</h2>
+            <div class="gallery-grid">
+                <figure class="gallery-item">
+                    <img src="screenshots/02_counter_kaffees.jpg" alt="3 Kaffees gezählt - 1,50€" loading="lazy">
+                    <figcaption>Kaffees zählen mit dem Goldcoin</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <img src="screenshots/03_bezahl_dialog.jpg" alt="Bezahlen Dialog" loading="lazy">
+                    <figcaption>Bezahl-Dialog mit Kassenklingeln</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <img src="screenshots/04_preis_editor.jpg" alt="Preis Editor" loading="lazy">
+                    <figcaption>Kaffeepreis flexibel einstellen</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <img src="screenshots/05_innen_leer.jpg" alt="Coin Button" loading="lazy">
+                    <figcaption>Eleganter Goldcoin-Button</figcaption>
+                </figure>
+            </div>
         </section>
 
         <section class="features">
@@ -294,8 +389,8 @@
                 <a href="support.html">Support & FAQ</a>
                 <a href="mailto:Theodor.kranz.labs@gmail.com">Kontakt</a>
             </div>
-            <p><span class="brand">0xC0FFEE++</span> · Made with ☕ in Klagenfurt · 2026</p>
-            <p style="margin-top: 8px; opacity: 0.6;">Prof. DI Theodor Kranz · HTL1 Lastenstraße · 9020 Klagenfurt</p>
+            <p><span class="brand">0xC0FFEE++</span> · Made with ☕ in Kärnten · 2026</p>
+            <p style="margin-top: 8px; opacity: 0.6;">DI Theodor Kranz BSc BEd · Kärnten, Österreich</p>
         </footer>
 
     </div>
