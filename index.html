@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xC0FFEE++ – Die digitale Kaffee-Stempelkarte</title>
+    <meta name="description" content="0xC0FFEE++ ist eine elegante Kaffee-Zähler-App im Holzkisten-Design. Tippe, zähle, bezahle – wie eine echte Kasse.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2a1608 0%, #1a0d04 100%);
+            color: #e8d4a8;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Holz-Maserung Hintergrund-Effekt */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                repeating-linear-gradient(90deg,
+                    transparent 0,
+                    transparent 19px,
+                    rgba(0,0,0,0.04) 20px,
+                    transparent 21px,
+                    transparent 60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-family: 'Courier New', monospace;
+            font-size: clamp(3em, 8vw, 5.5em);
+            font-weight: 900;
+            background: linear-gradient(180deg, #f5d896 0%, #b89866 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .tagline {
+            color: #e8b850;
+            font-size: clamp(1.1em, 2.5vw, 1.5em);
+            font-style: italic;
+            letter-spacing: 4px;
+            opacity: 0.85;
+        }
+
+        .est-line {
+            margin-top: 20px;
+            color: #8a6c40;
+            letter-spacing: 6px;
+            font-size: 0.9em;
+        }
+
+        /* HERO */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .hero-text h2 {
+            font-size: 2.2em;
+            color: #f5d896;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        .hero-text p {
+            color: #d4b478;
+            font-size: 1.15em;
+            margin-bottom: 16px;
+        }
+
+        .bean-display {
+            text-align: center;
+            font-size: 16em;
+            line-height: 1;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .feature {
+            background: rgba(40, 22, 12, 0.6);
+            border: 1px solid rgba(140, 95, 50, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-4px);
+            border-color: rgba(232, 184, 80, 0.5);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 16px;
+        }
+
+        .feature h3 {
+            color: #e8b850;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #b89866;
+            font-size: 0.95em;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            background: rgba(40, 22, 12, 0.8);
+            border: 1px solid rgba(140, 95, 50, 0.4);
+            border-radius: 16px;
+            padding: 50px 30px;
+            margin-bottom: 60px;
+        }
+
+        .cta h2 {
+            font-size: 2em;
+            color: #e8b850;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: #d4b478;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(180deg, #1a0d04 0%, #0a0501 100%);
+            border: 1px solid rgba(232, 184, 80, 0.5);
+            color: #e8b850;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .badge:hover {
+            border-color: #e8b850;
+            box-shadow: 0 0 20px rgba(232, 184, 80, 0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            color: #8a6c40;
+            font-size: 0.9em;
+            padding-top: 40px;
+            border-top: 1px solid rgba(140, 95, 50, 0.3);
+        }
+
+        footer a {
+            color: #b89866;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        footer a:hover {
+            color: #e8b850;
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-bottom: 16px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .bean-display {
+                font-size: 10em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header>
+            <h1>0xC0FFEE++</h1>
+            <p class="tagline">— die digitale Kaffee-Stempelkarte —</p>
+            <p class="est-line">EST · 2024</p>
+        </header>
+
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Eine alte Idee.<br>Neu gedacht.</h2>
+                <p>
+                    Eine Holzkiste, eine Goldmünze, ein klares Klingeln —
+                    <strong>0xC0FFEE++</strong> ist die elegante Art, Kaffee zu zählen.
+                </p>
+                <p>
+                    Inspiriert von alten Registrierkassen und liebevoll designt
+                    bis ins kleinste Detail. Tipp den Coin, hör das Klingeln,
+                    spür die Vibration — wie früher, nur eben digital.
+                </p>
+            </div>
+            <div class="bean-display">☕</div>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">🪵</div>
+                <h3>Holzkisten-Design</h3>
+                <p>Liebevoll gestaltete Holzkiste mit animierten Schiebetüren, Maserung und Astlöchern.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🪙</div>
+                <h3>Coin-Mechanik</h3>
+                <p>Tippen für +1 Kaffee, lange drücken zum Bezahlen. Mit echter Münze, Sound und Vibration.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Privat</h3>
+                <p>Keine Server, kein Tracking, keine Werbung. Alle Daten bleiben auf deinem iPhone.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚙️</div>
+                <h3>Anpassbarer Preis</h3>
+                <p>Stelle den Kaffeepreis selbst ein — von 0,10 € bis 99,99 €. Funktioniert mit jeder Währung.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📳</div>
+                <h3>Echtes Feedback</h3>
+                <p>CoreHaptics für satte Vibrationen, echte Münz-Sounds für jeden Klick.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <h3>Optimiert fürs iPhone</h3>
+                <p>Querformat-Design, ideal für den Tresen — auch mit der passenden 3D-Druck-Halterung.</p>
+            </div>
+        </section>
+
+        <section class="cta">
+            <h2>Demnächst im App Store</h2>
+            <p>0xC0FFEE++ wird in Kürze für iPhone verfügbar sein.</p>
+            <a href="#" class="badge">Coming Soon · iOS 18+</a>
+        </section>
+
+        <footer>
+            <div class="footer-links">
+                <a href="privacy.html">Datenschutz</a>
+                <a href="mailto:Theodor.kranz.labs@gmail.com">Kontakt</a>
+            </div>
+            <p>0xC0FFEE++ · Made with ☕ in Vienna · 2024</p>
+            <p style="margin-top: 8px; opacity: 0.6;">Theodor Kranz · HTL1 Lastenstraße</p>
+        </footer>
+
+    </div>
+</body>
+</html>
